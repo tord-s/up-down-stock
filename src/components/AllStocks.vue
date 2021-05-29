@@ -93,16 +93,21 @@ export default {
       errorThresh: 0.02,
       // log: (stats) => console.log(stats)
     });
-
     this.stocks = [];
     for (var i = 0; i < 3; i++) {
+      console.log(trainingData[0][i]);
+      const current_value = trainingData[i][i].open;
       const r = net.run(trainingData[i]);
+      const next_value = r.open;
+      const value_change = next_value - current_value;
       this.stocks.push({
         open: r.open,
         close: r.close,
         high: r.high,
         low: r.low,
+        value_change: value_change,
       });
+      console.log(value_change);
     }
   },
   mounted() {},

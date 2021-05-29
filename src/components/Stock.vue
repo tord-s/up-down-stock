@@ -1,6 +1,7 @@
 <template>
   <!-- <router-link :to="{ name: 'Stock', params: { position_id: stock.key } }"> -->
   <div class="preview_content">
+    <p class="title">Value change: {{ stock.value_change }}</p>
     <p class="title">Opening: {{ stock.open }}</p>
     <p class="company">High: {{ stock.high }}</p>
     <p class="deadline">Low: {{ stock.low }}</p>

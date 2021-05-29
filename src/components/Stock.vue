@@ -1,7 +1,8 @@
 <template>
   <!-- <router-link :to="{ name: 'Stock', params: { position_id: stock.key } }"> -->
   <div class="preview_content">
-    <div class="s1">
+    <p>Opening value: {{ stock.open }}</p>
+    <!-- <div class="s1">
       <h3 class="title">{{ stock.open }}</h3>
       <p class="company">{{ stock.high }}</p>
     </div>
@@ -9,7 +10,7 @@
     <div class="s2">
       <p class="deadline">📅 {{ stock.low }}</p>
       <p class="location">📍 {{ stock.close }}</p>
-    </div>
+    </div> -->
   </div>
   <!-- </router-link> -->
 </template>

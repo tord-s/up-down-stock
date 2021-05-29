@@ -4,24 +4,22 @@
     <p id="console_log"></p>
   </div> -->
   <h2>All Stocks</h2>
-  <p>{{ stocks }}</p>
   <div class="container">
-    <!-- <transition-group
+    <transition-group
       tag="div"
       appear
       @before-enter="beforeEnter"
       @enter="enter"
-    > -->
-    <div
-      v-for="(stock, index) in stocks"
-      :key="stock.id"
-      :data-index="index"
-      class="positions"
     >
-      <Stock :stock="stock" class="position" />
-    </div>
-    <p>hi</p>
-    <!-- </transition-group> -->
+      <div
+        v-for="(stock, index) in stocks"
+        :key="stock"
+        :data-index="index"
+        class="positions"
+      >
+        <Stock :stock="stock" class="position" />
+      </div>
+    </transition-group>
   </div>
 </template>
 
@@ -35,26 +33,6 @@ export default {
   name: "AllStocks",
   components: {
     Stock,
-  },
-  data() {
-    return {
-      stocks: [
-        {
-          id: 1,
-          open: 140,
-          close: 150,
-          high: 160,
-          low: 120,
-        },
-        {
-          id: 2,
-          open: 150,
-          close: 150,
-          high: 160,
-          low: 120,
-        },
-      ],
-    };
   },
   setup() {
     const beforeEnter = (el) => {
@@ -116,20 +94,21 @@ export default {
       // log: (stats) => console.log(stats)
     });
 
-    // this.stocks = [];
-    // for (var i = 0; i < 3; i++) {
-    //   const r = net.run(trainingData[i]);
-    //   this.stocks.push({
-    //     open: r.open,
-    //     close: r.close,
-    //     high: r.high,
-    //     low: r.low,
-    //   });
-    // }
+    this.stocks = [];
+    for (var i = 0; i < 3; i++) {
+      const r = net.run(trainingData[i]);
+      this.stocks.push({
+        open: r.open,
+        close: r.close,
+        high: r.high,
+        low: r.low,
+      });
+    }
   },
   mounted() {},
   data() {
     return {
+      stocks: [],
       rawData: [
         {
           date: "2018-11-02",

@@ -1,15 +1,10 @@
 <template>
   <!-- <router-link :to="{ name: 'Stock', params: { position_id: stock.key } }"> -->
   <div class="preview_content">
-    <div class="s1">
-      <h3 class="title">{{ stock.open }}</h3>
-      <p class="company">{{ stock.high }}</p>
-    </div>
-    <h1>Hi 2</h1>
-    <div class="s2">
-      <p class="deadline">📅 {{ stock.low }}</p>
-      <p class="location">📍 {{ stock.close }}</p>
-    </div>
+    <p class="title">Opening: {{ stock.open }}</p>
+    <p class="company">High: {{ stock.high }}</p>
+    <p class="deadline">Low: {{ stock.low }}</p>
+    <p class="location">Closing: {{ stock.close }}</p>
   </div>
   <!-- </router-link> -->
 </template>
@@ -39,19 +34,16 @@ a {
 .preview_content {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   width: 50vw;
+  height: auto;
   padding: 10px 30px 10px 30px;
   margin: 10px;
   background: #0d698b;
+  color: white;
 }
 
-.s1 {
-  flex-grow: 5;
-  text-align: left;
-}
-
-.s2 {
-  flex-grow: 3;
-  text-align: right;
+.preview_content > p {
+  margin: 10px;
 }
 </style>

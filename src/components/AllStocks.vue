@@ -94,10 +94,30 @@ export default {
       // log: (stats) => console.log(stats)
     });
     this.stocks = [];
-    for (var i = 0; i < 3; i++) {
-      console.log(trainingData[0][i]);
-      const current_value = trainingData[i][i].open;
-      const r = net.run(trainingData[i]);
+    this.predictions = [];
+    const running_pred = trainingData[3];
+
+    for (var j = 0; j < 50; j++) {
+      const r = net.run(running_pred);
+      running_pred.push({
+        open: r.open,
+        close: r.close,
+        high: r.high,
+        low: r.low,
+      });
+      this.predictions.push({
+        open: r.open,
+        close: r.close,
+        high: r.high,
+        low: r.low,
+      });
+      running_pred.shift();
+    }
+    console.log(this.predictions);
+
+    for (var k = 0; k < 3; k++) {
+      const current_value = trainingData[k][k].open;
+      const r = net.run(trainingData[k]);
       const next_value = r.open;
       const value_change = next_value - current_value;
       this.stocks.push({
@@ -107,13 +127,13 @@ export default {
         low: r.low,
         value_change: value_change,
       });
-      console.log(value_change);
     }
   },
-  mounted() {},
+  // TODO: ADD CHART FUNCTIONALITY
   data() {
     return {
       stocks: [],
+      predictions: [],
       rawData: [
         {
           date: "2018-11-02",

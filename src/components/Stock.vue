@@ -6,15 +6,20 @@
     <p class="company">High: {{ stock.high }}</p>
     <p class="deadline">Low: {{ stock.low }}</p>
     <p class="location">Closing: {{ stock.close }}</p>
+    <line-chart :data="currency_development"></line-chart>
   </div>
   <!-- </router-link> -->
 </template>
 
 <script>
+import "chartkick/chart.js";
+import axios from "axios";
+
 export default {
   name: "Stock",
   props: {
     stock: Object,
+    currency_development: Array,
   },
   data() {
     return {};
@@ -23,6 +28,16 @@ export default {
     // lengthValues() {
     //     return this.values.length
     // }
+  },
+  mounted() {
+    axios
+      .get("http://localhost:5000")
+      .then((response) => {
+        this.currency_development = response;
+      })
+      .catch((e) => {
+        this.errors.push(e);
+      });
   },
 };
 </script>
